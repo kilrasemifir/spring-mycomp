@@ -58,5 +58,14 @@ public class EquipeServiceImpl implements EquipeService {
 
         return this.save(equipe);
     }
+
+    @Override
+    public Equipe supprimerMembre(String idEquipe, String idMembre) {
+        Equipe equipe = findById(idEquipe);
+        equipe.getMembres().removeIf(membre-> membre.getId().equals(idMembre));
+        return save(equipe);
+    }
+
+
 }
 

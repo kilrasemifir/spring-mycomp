@@ -41,4 +41,10 @@ public class EquipeController {
         return this.equipeService.ajoutMembre(idEquipe, idMembre);
     }
 
+    @DeleteMapping("{idEquipe}/membres/{idMembre}")
+    public Equipe supprimerMembre(
+            @PathVariable String idEquipe,
+            @PathVariable String idMembre) {
+        return this.equipeService.supprimerMembre(idEquipe, idMembre);
+    }
 }

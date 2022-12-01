@@ -19,4 +19,6 @@ public interface EquipeService {
      * @return l'équipe avec les membres
      */
     Equipe ajoutMembre(String idEquipe, String idMembre);
+
+    Equipe supprimerMembre(String idEquipe, String idMembre);
 }
