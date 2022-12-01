@@ -35,4 +35,10 @@ public class EquipeController {
         equipeService.deleteById(id);
     }
 
+    @PutMapping("{idEquipe}/membres/{idMembre}")
+    public Equipe ajoutMembre(@PathVariable String idEquipe,
+                              @PathVariable String idMembre){
+        return this.equipeService.ajoutMembre(idEquipe, idMembre);
+    }
+
 }
