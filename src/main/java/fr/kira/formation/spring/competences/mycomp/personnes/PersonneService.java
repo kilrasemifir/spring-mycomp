@@ -5,11 +5,14 @@ import fr.kira.formation.spring.competences.mycomp.personnes.dto.PersonneMinimal
 import java.util.List;
 
 public interface PersonneService {
-    List<PersonneMinimalDTO> findAll();
+
+    public List<PersonneMinimalDTO> findAll(int page, int size);
 
     Personne save(Personne entity);
 
     Personne findById(String id);
 
     void deleteById(String id);
+
+
 }

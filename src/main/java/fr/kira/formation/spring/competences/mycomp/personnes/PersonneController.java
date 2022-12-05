@@ -1,5 +1,6 @@
 package fr.kira.formation.spring.competences.mycomp.personnes;
 
+import fr.kira.formation.spring.competences.mycomp.personnes.dto.PersonneMinimalDTO;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,8 +17,11 @@ public class PersonneController {
     }
 
     @GetMapping("")
-    public List<Personne> findAll() {
-        return personneService.findAll();
+    public List<PersonneMinimalDTO> findAll(
+            @RequestParam(name = "page", defaultValue = "0") int page,
+            @RequestParam(name = "size", defaultValue = "10") int size
+    ) {
+        return personneService.findAll(page, size);
     }
 
     @PostMapping("")

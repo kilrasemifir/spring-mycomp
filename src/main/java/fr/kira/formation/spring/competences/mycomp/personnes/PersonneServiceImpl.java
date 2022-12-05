@@ -22,8 +22,8 @@ public class PersonneServiceImpl implements PersonneService {
     }
 
     @Override
-    public List<PersonneMinimalDTO> findAll() {
-        List<Personne> listePersonnes = personneRepository.findAll(PageRequest.of(0, 10)).toList();
+    public List<PersonneMinimalDTO> findAll(int page, int size) {
+        List<Personne> listePersonnes = personneRepository.findAll(PageRequest.of(page, size)).toList();
         return objectMapper.convertValue(
                 listePersonnes,
                 new TypeReference<List<PersonneMinimalDTO>>() {}
