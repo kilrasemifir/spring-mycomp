@@ -1,23 +1,33 @@
 package fr.kira.formation.spring.competences.mycomp.personnes;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import fr.kira.formation.spring.competences.mycomp.personnes.dto.PersonneMinimalDTO;
+import fr.kira.formation.spring.competences.mycomp.personnes.repositories.PersonneRepository;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class PersonneServiceImpl implements PersonneService {
 
     private final PersonneRepository personneRepository;
+    private final ObjectMapper objectMapper;
 
-    public PersonneServiceImpl(PersonneRepository personneRepository) {
+    public PersonneServiceImpl(PersonneRepository personneRepository, ObjectMapper objectMapper) {
         this.personneRepository = personneRepository;
+        this.objectMapper = objectMapper;
     }
 
     @Override
-    public List<Personne> findAll() {
-        return personneRepository.findAll();
+    public List<PersonneMinimalDTO> findAll() {
+        List<Personne> listePersonnes = personneRepository.findAll(PageRequest.of(0, 10)).toList();
+        return objectMapper.convertValue(
+                listePersonnes,
+                new TypeReference<List<PersonneMinimalDTO>>() {}
+        );
     }
 
     @Override
